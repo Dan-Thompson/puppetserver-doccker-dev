@@ -1,0 +1,44 @@
+version: "2"
+
+services:
+  master:
+    image: puppetserver:latest
+    container_name: puppetserver
+    hostname: puppetserver
+    volumes:
+      - ./code:/etc/puppetlabs/
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
+
+    ports:
+       - "8140:8140"
+    extra_hosts:
+      - "puppet:127.0.0.1"
+    
+    build:
+      context: .
+      dockerfile: Dockerfile
+#      cache_from:
+#        - slave:latest
+
+  slave:
+    image: slave:latest
+    networks:
+      vpcbr:
+    extra_hosts:
+      - "puppet:10.5.0.5"
+    
+    build:
+      context: .
+      dockerfile: Dockerfile.slave
+#      cache_from:
+#        - debian:latest
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1

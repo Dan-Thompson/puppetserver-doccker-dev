@@ -1,0 +1,16 @@
+---
+
+motd::content: 'Read from from Hiera'
+
+
+#generate unix password
+#openssl passwd -1 to generate pass
+
+ssh_password::daniel: "password"
+
+ssh_keys::daniel:
+  - 'ssh-rsa AAAAAxxxxxx dummy_key'
+  
+ssh_keys::root: 
+  - "ssh-rsa AAAAB3xxxx dummy_key"
+

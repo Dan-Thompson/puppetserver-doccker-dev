@@ -1,0 +1,14 @@
+---
+
+motd::content: 'From Hiera - Stage ENV'
+
+ssh_password::daniel: "password"
+
+ssh_keys::daniel:
+  - 'ssh-rsa AAAAxxx dummy_key'
+  
+ssh_keys::root: 
+  - "ssh-rsa AAAAB3xxxa dummy_key"
+  - "ssh-rsa AAAAB3xxxb dummy_key"
+  - "ssh-rsa AAAAB3xxxc dummy_key"
+  - "ssh-rsa AAAAB3xxxd dummy_key"
